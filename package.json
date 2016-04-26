@@ -1,0 +1,26 @@
+{
+  "name": "Domovoy",
+  "author": "Yann Jajkiewicz",
+  "version": "0.0.1",
+  "description": "A Jarvis-like application implemented with Node.js.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yjajkiew/domovoy.git"
+  },
+  "main": "domovoy.js",
+  "scripts": {
+    "start": "node domovoy.js"
+  },
+  "keywords": [
+    "node.js",
+    "jarvis",
+    "domovoy"
+  ],
+  "bugs": {
+    "url": "https://github.com/yjajkiew/domovoy/issues"
+  },
+  "dependencies": {
+    "express": "^4.10.4"
+  },
+  "license": "Apache"
+}
