@@ -1,0 +1,13 @@
+{
+  "name": "user",
+  "description": "Main user",
+  "language": "en",
+  "voice": "male",
+  "gmail": {
+    "username": "user@gmail.com",
+    "password": "password"
+  },
+  "weather": {
+  	"wmo": "07222"
+  }
+}
