@@ -15,7 +15,7 @@ var modules = require('./utils/modules').load('modules');
 
 // load TTS
 var TTS = require('./utils/tts.js');
-var tts = new TTS(config.ivona);
+var tts = new TTS(config.ivona, user);
 
 //tts.getVoices();
 tts.speak('Hi there, my name is Domovoy. Initialisation completed with success !');

@@ -3,11 +3,16 @@ var Ivona = require('ivona-node');
 var fs = require('fs');
 var exec = require('child_process').exec;
 
-function tts(config) {
+function tts(config, user) {
 	this.ivona = new Ivona({
 		accessKey: config.accessKey,
         secretKey: config.secretKey
 	});
+	this.voice = {
+		name: user.voice.ivona.name,
+		language: user.language,
+		gender: user.voice.ivona.gender
+	};
 }
 
 tts.prototype = {
@@ -21,11 +26,7 @@ tts.prototype = {
 	speak: function(text) {
 		this.ivona.createVoice(text, {
 	        body: {
-	            voice: {
-	                name: 'Salli',
-	                language: 'en-US',
-	                gender: 'Female'
-	            }
+	            voice: this.voice
 	        }
     	})
     	.on('end', function() { 

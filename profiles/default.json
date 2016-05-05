@@ -1,8 +1,13 @@
 {
   "name": "user",
   "description": "Main user",
-  "language": "en",
-  "voice": "male",
+  "language": "en-GB",
+  "voice": { 
+    "ivona": { 
+      "gender": "Male",
+      "name": "Brian"
+    }
+  },
   "gmail": {
     "username": "user@gmail.com",
     "password": "password"
