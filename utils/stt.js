@@ -1,8 +1,11 @@
 'use strict';
 
+var util = require('util');
+var EventEmitter = require('events').EventEmitter;
 const readline = require('readline');
 
 function stt(core, modules, user, tts) {
+
 	this.tts = tts;
 	this.user = user;
 	this.language = user.language.substring(0, 2); // returns something like 'fr' or 'en'
@@ -42,7 +45,6 @@ stt.prototype = {
 
 		this.rl.on('line', (line) => {
 			for(var key in this.commands) {
-				//console.log(this.commands[key]);
 				if (this.commands[key].indexOf(line.trim().toUpperCase()) !== -1) {
 					this.rl.pause();
 					this.allModules[key].handle(this, this.tts, this.user);
@@ -68,14 +70,40 @@ stt.prototype = {
 				return true;
 			}
 			else if (line.trim().toUpperCase() === 'CANCEL') {
+				this.rl.pause();
+				this.listen();
 				return false;
 			}
 			else {
 				this.rl.prompt();
 			}
 		});
+	},
+
+	listenForConfirmation: function(prompt) {
+		this.rl.setPrompt('Domovoy ' + prompt + '> ');
+		this.rl.prompt();
+		var positive = ['YES', 'YEAH', 'POSITIVE'];
+		var negative = ['NO', 'NEH', 'NEGATIVE'];
+		this.rl.on('line', (line) => {
+			if (positive.indexOf(line.trim().toUpperCase()) !== -1) {
+				this.emit('end', true);
+			}
+			else if (negative.indexOf(line.trim().toUpperCase()) !== -1) {
+				this.emit('end', false);
+			}
+			else if (line.trim().toUpperCase() === 'CANCEL') {
+				this.rl.pause();
+				this.emit('end', false);
+			}
+			else {
+				this.rl.prompt();
+			}
+		});
+		return this;
 	}
 
 };
 
+util.inherits(stt, EventEmitter);
 module.exports = stt;
