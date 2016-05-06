@@ -8,8 +8,8 @@ var config = {};
 
     // ivona config
     config.ivona = {
-    	accessKey: '',
-    	secretKey : ''
+    	accessKey: 'GDNAJHNTVFIKADRM44MQ',
+    	secretKey : 'X2dssA65c1nA70sYw79FDwGonNBjLXMnwsNCXl9E'
     };
 
 module.exports = config;

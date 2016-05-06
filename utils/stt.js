@@ -87,10 +87,10 @@ stt.prototype = {
 		var negative = ['NO', 'NEH', 'NEGATIVE'];
 		this.rl.on('line', (line) => {
 			if (positive.indexOf(line.trim().toUpperCase()) !== -1) {
-				this.emit('end', true);
+				this.emit('done', true);
 			}
 			else if (negative.indexOf(line.trim().toUpperCase()) !== -1) {
-				this.emit('end', false);
+				this.emit('done', false);
 			}
 			else if (line.trim().toUpperCase() === 'CANCEL') {
 				this.rl.pause();

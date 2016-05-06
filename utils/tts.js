@@ -2,10 +2,11 @@
 var Ivona = require('ivona-node');
 var fs = require('fs');
 var exec = require('child_process').exec;
+var util = require('util');
+var EventEmitter = require('events').EventEmitter;
 
 function tts(config, user) {
 	this.mp3 = config.mp3;
-
 	this.ivona = new Ivona({
 		accessKey: config.accessKey,
         secretKey: config.secretKey
@@ -39,12 +40,16 @@ tts.prototype = {
 				//	console.log('exec error: ' + error);
 				//}
 			});
+    		this.emit('done');
     	})
     	.pipe(
     		fs.createWriteStream(String(this.mp3))
     	);
+    	return this;
 	}
 
 };
 
+
+util.inherits(tts, EventEmitter);
 module.exports = tts;

@@ -15,7 +15,7 @@ var modules = require('./utils/modules').load('modules');
 
 // load TTS
 var TTS = require('./utils/tts.js');
-var tts = new TTS(config.ivona, user);
+var tts = new TTS(config, user);
 
 // load mic
 var STT = require('./utils/stt.js');
