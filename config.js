@@ -4,7 +4,7 @@ var config = {};
     config.port = process.env.PORT || 1337;
 
     // temporary mp3 file
-    config.mp3 = '/tmp/domovoy-stt.mp3';
+    config.mp3 = '/tmp/domovoy-tts.mp3';
 
     // ivona config
     config.ivona = {

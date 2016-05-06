@@ -43,7 +43,7 @@ tts.prototype = {
     		this.emit('done');
     	})
     	.pipe(
-    		fs.createWriteStream(String(this.mp3))
+    		fs.createWriteStream(this.mp3)
     	);
     	return this;
 	}
