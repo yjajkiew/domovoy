@@ -34,7 +34,6 @@ tts.prototype = {
 	        }
     	})
     	.on('end', function() { 
-    		console.log(self.mp3);
     		var child = exec('mpg123 ' + self.mp3, function (error, stdout, stderr) {
   				//sys.print('stdout: ' + stdout);
   				//sys.print('stderr: ' + stderr);
