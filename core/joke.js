@@ -12,7 +12,8 @@ function getRandomJoke() {
 
 function handle(stt, tts, user) {
 	var joke = getRandomJoke();
-	tts.speak(joke).on('done', function() { getAnother(stt, tts, user); });
+	tts.speak(joke); //.on('done', function() { stt.listen(); });
+	getAnother(stt, tts, user);
 };
 
 function getAnother(stt, tts, user) {

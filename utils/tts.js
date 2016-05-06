@@ -41,7 +41,7 @@ tts.prototype = {
 				//	console.log('exec error: ' + error);
 				//}
 			});
-    		this.emit('done');
+    		self.emit('done');
     	})
     	.pipe(
     		fs.createWriteStream(this.mp3)

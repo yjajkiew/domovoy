@@ -23,10 +23,9 @@ function stt(core, modules, user, tts) {
 stt.prototype = {
 
 	listen: function() {
-		//console.log(this.modules);
 		this.rl.setPrompt('Domovoy> ');
 		this.rl.prompt();
-
+		this.rl.removeAllListeners('line');
 		this.rl.on('line', (line) => {
 			if (line.trim().toUpperCase() === 'OK DOMOVOY') {
 				console.log('listen carefully');
@@ -42,7 +41,7 @@ stt.prototype = {
 	listenCommand: function() {
 		this.rl.setPrompt('Domovoy command> ');
 		this.rl.prompt();
-
+		this.rl.removeAllListeners('line');
 		this.rl.on('line', (line) => {
 			for(var key in this.commands) {
 				if (this.commands[key].indexOf(line.trim().toUpperCase()) !== -1) {
@@ -64,6 +63,7 @@ stt.prototype = {
 	listenForWords: function(prompt, words) {
 		this.rl.setPrompt('Domovoy ' + prompt + '> ');
 		this.rl.prompt();
+		this.rl.removeAllListeners('line');
 		this.rl.on('line', (line) => {
 			if (words.indexOf(line.trim().toUpperCase()) !== -1) {
 				this.rl.pause();
@@ -85,6 +85,7 @@ stt.prototype = {
 		this.rl.prompt();
 		var positive = ['YES', 'YEAH', 'POSITIVE'];
 		var negative = ['NO', 'NEH', 'NEGATIVE'];
+		this.rl.removeAllListeners('line');
 		this.rl.on('line', (line) => {
 			if (positive.indexOf(line.trim().toUpperCase()) !== -1) {
 				this.emit('done', true);
