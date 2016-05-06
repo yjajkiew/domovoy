@@ -3,8 +3,11 @@ var config = {};
 	// port
     config.port = process.env.PORT || 1337;
 
-    // temporary mp3 file
-    config.mp3 = '/tmp/domovoy-tts.mp3';
+    // mp3 configuration
+    config.mp3 = {
+    	reader: 'mpg123', // examples : mpg123 on raspberry pi, afplay on mac
+    	file: '/tmp/domovoy-tts.mp3'
+    }
 
     // ivona config
     config.ivona = {

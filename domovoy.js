@@ -21,13 +21,9 @@ var tts = new TTS(config, user);
 var STT = require('./utils/stt.js');
 var mic = new STT(core, modules, user, tts);
 
-tts.speak('Hi there, my name is Domovoy. Initialisation completed with success !');
-
-mic.listen();
-
-//tts.getVoices();
-
-//core.joke.handle(mic, tts, user);
+tts.speak('Hi there, my name is Domovoy. Initialisation completed with success !').on('done', function() {
+	mic.listen();
+});
 
 //var app = express();
 //app.listen(config.port);

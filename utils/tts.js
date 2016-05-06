@@ -3,6 +3,7 @@ var Ivona = require('ivona-node');
 var fs = require('fs');
 var exec = require('child_process').exec;
 var util = require('util');
+var spawn = require('child_process').spawn;
 var EventEmitter = require('events').EventEmitter;
 
 function tts(config, user) {
@@ -27,24 +28,20 @@ tts.prototype = {
 	},
 
 	speak: function(text) {
+		this.removeAllListeners('done');
 		var self = this;
 		this.ivona.createVoice(text, {
 	        body: {
 	            voice: this.voice
 	        }
     	})
-    	.on('end', function() { 
-    		var child = exec('mpg123 ' + self.mp3, function (error, stdout, stderr) {
-  				//sys.print('stdout: ' + stdout);
-  				//sys.print('stderr: ' + stderr);
-				//if (error !== null) {
-				//	console.log('exec error: ' + error);
-				//}
-			});
-    		self.emit('done');
+    	.on('end', function() {
+    		var mp3reader = spawn(self.mp3.reader, [self.mp3.file]).on('exit', function(code) {
+    			self.emit('done');
+    		});
     	})
     	.pipe(
-    		fs.createWriteStream(this.mp3)
+    		fs.createWriteStream(this.mp3.file)
     	);
     	return this;
 	}
