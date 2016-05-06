@@ -1,20 +1,19 @@
 var joke = {};
-	joke.name = "joke";
+	joke.name = 'joke';
 	joke.commands = {
-		"en": ["JOKE", "KNOCK KNOCK"],
-		"fr": ["BLAGUE", "RIRE"]
+		'en': ['JOKE', 'KNOCK KNOCK'],
+		'fr': ['BLAGUE', 'RIRE']
 	};
 	joke.handle = handle;
 
-
 function getRandomJoke() {
-	return "HELLO YOU";
+	return 'HELLO YOU';
 }
 
-function handle(text, mic, user) {
+function handle(stt, tts, user) {
 	var joke = getRandomJoke();
-	//mic.say(joke);
-	return joke;
+	stt.listenForWords('joke', []);
+	tts.speak(joke);
 };
 
 module.exports = joke;

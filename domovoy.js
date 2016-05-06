@@ -17,10 +17,17 @@ var modules = require('./utils/modules').load('modules');
 var TTS = require('./utils/tts.js');
 var tts = new TTS(config.ivona, user);
 
-//tts.getVoices();
+// load mic
+var STT = require('./utils/stt.js');
+var mic = new STT(core, modules, user, tts);
+
 tts.speak('Hi there, my name is Domovoy. Initialisation completed with success !');
 
-console.log(core.joke.handle(1,2,3));
+mic.listen();
+
+//tts.getVoices();
+
+//core.joke.handle(mic, tts, user);
 
 //var app = express();
 //app.listen(config.port);

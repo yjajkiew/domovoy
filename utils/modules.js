@@ -2,7 +2,7 @@ var fs = require('fs');
 
 var modules = {}
 modules.load = function(type) {
-	var modules_array = [];
+	var modules_array = {};
 
 	var path = './' + type;
 
@@ -12,6 +12,9 @@ modules.load = function(type) {
 	  	modules_array[fileName] = require('../' + type + '/' + fileName);
 	  }
 	});
+	modules_array['test'] = { name: 'test', commands : {
+		'en': ['TEST', 'TEST TEST']
+	} };
 	return modules_array;
 }
 

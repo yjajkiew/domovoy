@@ -4,6 +4,8 @@ var fs = require('fs');
 var exec = require('child_process').exec;
 
 function tts(config, user) {
+	this.mp3 = config.mp3;
+
 	this.ivona = new Ivona({
 		accessKey: config.accessKey,
         secretKey: config.secretKey
@@ -30,7 +32,7 @@ tts.prototype = {
 	        }
     	})
     	.on('end', function() { 
-    		var child = exec('mpg123 /tmp/domovoy-tts.mp3', function (error, stdout, stderr) {
+    		var child = exec('mpg123 ' + this.mp3, function (error, stdout, stderr) {
   				//sys.print('stdout: ' + stdout);
   				//sys.print('stderr: ' + stderr);
 				//if (error !== null) {
@@ -39,7 +41,7 @@ tts.prototype = {
 			});
     	})
     	.pipe(
-    		fs.createWriteStream('/tmp/domovoy-tts.mp3')
+    		fs.createWriteStream(String(this.mp3))
     	);
 	}
 
