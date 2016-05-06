@@ -27,13 +27,15 @@ tts.prototype = {
 	},
 
 	speak: function(text) {
+		var self = this;
 		this.ivona.createVoice(text, {
 	        body: {
 	            voice: this.voice
 	        }
     	})
     	.on('end', function() { 
-    		var child = exec('mpg123 ' + this.mp3, function (error, stdout, stderr) {
+    		console.log(self.mp3);
+    		var child = exec('mpg123 ' + self.mp3, function (error, stdout, stderr) {
   				//sys.print('stdout: ' + stdout);
   				//sys.print('stderr: ' + stderr);
 				//if (error !== null) {
