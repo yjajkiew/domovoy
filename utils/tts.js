@@ -8,8 +8,8 @@ var EventEmitter = require('events').EventEmitter;
 function tts(config, user) {
 	this.mp3 = config.mp3;
 	this.ivona = new Ivona({
-		accessKey: config.accessKey,
-        secretKey: config.secretKey
+		accessKey: config.ivona.accessKey,
+        secretKey: config.ivona.secretKey
 	});
 	this.voice = {
 		name: user.voice.ivona.name,
