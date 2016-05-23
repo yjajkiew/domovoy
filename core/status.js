@@ -9,7 +9,7 @@ status.commands = {
 };
 status.handle = handle;
 
-function handlne(stt, tts, user) {
+function handle(stt, tts, user) {
 
 	var text = {
 		'en': 'I am currently running on %s %s. Free memory is %s of %s. The uptime is %s.',
